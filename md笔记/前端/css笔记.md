@@ -755,6 +755,24 @@ btn hover的时候边框进度条加载也是同理。
 
 
 
+# border叠加问题
+
+![image-20211105155833262](C:\Users\msze0088\AppData\Roaming\Typora\typora-user-images\image-20211105155833262.png)
+
+因为可能出现奇数或者偶数个，所以通常采用的让最后不显示border的方式不可行。
+
+```css
+      >.item{
+        margin :0 0 -1px 0;
+      }
+```
+
+给底部设置一个-1，则使得，最后一行下移1px，正好和border重合。
+
+
+
+
+
 
 
 
