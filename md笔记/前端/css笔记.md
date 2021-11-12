@@ -212,7 +212,7 @@ article{
 ## 两行隐藏
 
 ```css
- overflow: hidden;
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
