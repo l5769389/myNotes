@@ -1,5 +1,15 @@
 # 基础知识
 
+## 安装
+
+### JDK安装
+
+https://blog.csdn.net/qq_44866828/article/details/118963681
+
+
+
+
+
 ## 基本类型
 
 ### 数据类型
