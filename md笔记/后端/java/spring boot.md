@@ -1,62 +1,101 @@
-# spring boot +mybatis
+# 为什么使用springboot
 
-## demo
+## spring缺点
 
-### 1.pom中添加依赖
+1. 代码轻量，配置较重，spring开始使用xml配置，spring2.5开始使用基于注解的组件扫描，spring3.0引入了基于java的配置。
 
-### 2. application.properties添加sql配置
+2. 项目依赖多，发生冲突。
 
-注意：learnJava对应的是sql中db的名称：
 
-<img src="https://tva1.sinaimg.cn/large/008eGmZEgy1goyhds6iv4j30bk058aai.jpg" alt="image-20210327151112568" style="zoom:50%;" />
 
-```properties
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/learnJava?characterEncoding=UTF-8
-spring.datasource.username=root
-spring.datasource.password=tthappy123
+
+
+# 环境搭建
+
+1. springboot的基础依赖：
+
+```xml
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        // web功能起步依赖
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 ```
 
 
 
-### 3. 新建一个对应数据库表的实例类
+2. springboot 引导类
 
 ```java
-public class Student {
-    private int id;
-    private String name;
-  	// getter setter
+@SpringBootApplication // 来声明引导类。
+public class MyApplicationBootApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApplicationBootApplication.class);
+    }
 }
+
 ```
 
 
 
-### 4. 添加一个mapper接口是db和db操作的接口
-
-@Select 语句也可以单独抽取。
+3. 创建controller
 
 ```java
-@Mapper
-public interface StudentMapper {
-    @Select("select * from student")
-    public List<Student> getAll();
-}
-```
-
-
-
-
-
-### 5.在controller中操作db
-
-```java
-@RestController
-public class studentController {
-    @Autowired
-    StudentMapper studentMapper;
-    @GetMapping("/getAll")
-    public List<Student> getAll(){
-        return  studentMapper.getAll();
+@Controller
+public class controller {
+    @RequestMapping("/map")
+    @ResponseBody
+    public String test(){
+        return  "aaaa";
     }
 }
 ```
 
+
+
+4. springboot 热部署（没做出来）
+
+
+
+
+
+### idea springboot的快速搭建
+
+通过spring initializr
+
+
+
+
+
+# springboot原理
+
+
+
+# springboot配置文件
+
+1. application.properties
+2. application.yml
+
+
+
+
+
+# springboot 集成
+
+## 集成mybatis
+
+https://blog.csdn.net/iku5200/article/details/82856621/
+
+## 集成Junit
+
+## 集成SpringData JPA
+
+## 集成Redis
