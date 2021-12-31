@@ -288,6 +288,27 @@ article{
 
 
 
+### flex:1 溢出
+
+![image-20211227110833168](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20211227110833168.png)
+
+两个子div 都设置了flex：1。 但是第一个如果长度超出均分的长度，会导致第一个挤压第二个的空间。
+
+添加：
+
+```css
+flex:1;
+width:0;
+```
+
+能使得宽度均分。
+
+
+
+
+
+
+
 
 
 # 变换
