@@ -100,9 +100,7 @@ type=‘text’  和type=“password”
 
 # 一些值得注意的点
 
-<img src="/Users/ljun/Library/Application Support/typora-user-images/image-20211107144506581.png" alt="image-20211107144506581" style="zoom: 25%;" />
+input监控输入的值，如：只能为number。等；
 
-如图所示，在输入的情况下其实setVal被触发了2次。
-
-我觉得在源码中：handleInput 不需要再`this.$nextTick(this.setNativeInputValue);`不知道目的是什么。
+![image-20220110150913982](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220110150913982.png)
 

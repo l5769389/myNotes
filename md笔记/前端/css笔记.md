@@ -4,6 +4,34 @@
 
 ## 容易忽视的点
 
+
+
+### 选择器
+
+1. 如果是多个元素则选择第一个元素:
+
+```css
+>button:not(:last-of-type):first-of-type{
+    
+}
+```
+
+2. 选择除去第一个和最后一个元素:
+
+```css
+>button:not(:first-child):not(:last-child){
+    
+}
+```
+
+
+
+
+
+
+
+
+
 ### padding、margin 的百分比依据都是**父元素宽度**
 
 ```css
