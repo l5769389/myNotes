@@ -14,7 +14,11 @@ CMS：内容管理系统
 
 
 
-![image-20211221084204467](https://raw.githubusercontent.com/l5769389/note-img-repository/main/image-20211221084204467.png)
+<img src="https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220320200350834.png" alt="image-20220320200350834" style="zoom:150%;" />
+
+微服务项目导入IDEA中。
+
+
 
 
 

@@ -211,3 +211,20 @@ String转换API：
 * `byte[] getBytes()`
 * `replace(oldString,newString)`
 
+
+
+
+
+# 常见概念
+
+## jar和war包的区别
+
+1. jar包可以理解为java打成的包，war包为javaweb打成的包（一个完整的web工程）。
+2. 把war包放在tomcat目录的webapp下，tomcat服务器在启动的时候可以直接使用这个war包。
+
+## tomcat和nginx的区别
+
+[tomcat 与 nginx，apache的区别是什么？](https://www.zhihu.com/question/32212996)
+
+1. tomcat，**Application Server**  是一个运行在JVM之上，用来管理servlet，返回动态资源。是一个Servlet/JSP应用的容器。作为一个应用的执行容器需要支持开发语言的Runtime（java），其主要保证的是应用相关的规范如：类库、安全等。
+2. nginx，**Http Server**，其主要作用是在HTTP协议层面的控制，如代理、负载均衡等，它要保证的是将内容如实的反应给客户端。
