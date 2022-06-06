@@ -170,6 +170,18 @@ docker load -i mynginx.tar
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ### dockerfile
 
 通过一系列命令和参数，由基础镜像来构建新的镜像。
@@ -211,4 +223,12 @@ docker load -i mynginx.tar
 
 
 ## docker compose
+
+
+
+
+
+
+
+
 

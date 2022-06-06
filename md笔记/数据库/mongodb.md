@@ -1,3 +1,19 @@
+# 安装
+
+## mac homebrew 安装mongodb
+
+启动和关闭：
+
+```shell
+brew services stop mongodb-community
+```
+
+
+
+
+
+
+
 # CRUD
 
 ## 创建
