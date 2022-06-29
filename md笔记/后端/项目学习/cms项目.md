@@ -1193,22 +1193,29 @@ fastdfs storage 的nginx路径在：`/usr/local/nginx`
 
 4. 创建storage: **注意修改TRACKER_SERVER**
 
+   1. 查看本机的ip地址：
+
+   ![image-20220627132604656](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220627132604656.png)
+
    ```
-   sudo docker run -dti --name storage -p 8080:8080 -p 23000:23000 -e TRACKER_SERVER=192.168.1.4:22122 -v ~/fdfs/storage:/var/fdfs delron/fastdfs storage
+   sudo docker run -d --name storage -p 8888:8888 -p 23000:23000 --net=my-net -e TRACKER_SERVER=172.19.0.2:22122 -v ~/fdfs/storage:/var/fdfs delron/fastdfs storage
    ```
 
-5. 进入tracker 查看 tracker 和storage通讯时，tracker采用的ip：（或者 docker inspect storage）
+5. ~~进入tracker 查看 tracker 和storage通讯时，tracker采用的ip：（或者 docker inspect storage）~~
+
    1. `docker exec -it tracker /bin/bash`
    2. `ifconfig`
 
 ​	<img src="https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220412100216032.png" alt="image-20220412100216032" style="zoom: 50%;" />
 
-6. 回到mac shell下，根据5中查到的ip，设置别名:因为，172.19.0.2是内部网桥，需要别名到本地，注意需要Gateway也需要设置别名。
 
-   <img src="https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220412143529449.png" alt="image-20220412143529449" style="zoom:50%;" />
 
-   1. `sudo ifconfig lo0 alias 172.19.0.2`  
-   2. `sudo ifconfig lo0 alias 192.168.1.4`  //mac本机的ip地址
+如果出现：<u>无法获取服务端连接资源：can't create connection to/172.19.0.1:23000</u>:
+
+回到mac shell下，设置别名:因为，172.19.0.2是内部网桥，需要别名到本地，注意需要Gateway也需要设置别名。
+
+1. `sudo ifconfig lo0 alias 172.19.0.2`  
+2. `sudo ifconfig lo0 alias 192.168.1.4`  //mac本机的ip地址
 
 注意：6中的还原命令为：
 
@@ -1219,9 +1226,19 @@ sudo ifconfig lo0 -alias 172.19.0.1
 
 
 
-
-
 7、 验证成功
+
+依赖：
+
+```xml
+        <dependency>
+            <groupId>com.github.tobato</groupId>
+            <artifactId>fastdfs-client</artifactId>
+            <version>1.26.1-RELEASE</version>
+        </dependency>
+```
+
+
 
 * yml
 
@@ -1230,19 +1247,28 @@ server:
   port: 6666
 fdfs:
   tracker-list:
-    - 192.168.1.4:22122 # tacker服务的地址
+    - 192.168.1.4:22122 # tacker服务的地址  // 本机ip
   connect-timeout: 30000 # 连接超时时间
   so-timeout: 3000 # 读取文件超时时间
   thumb-image: # 缩率图
     height: 200
     width: 200
-dsfHostName: http://192.168.1.4:8080/
-
+dsfHostName: http://172.19.0.2:8888/    
 ```
 
 
 
-* java:
+* 配置类
+
+```java
+@Configuration
+@Import(FdfsClientConfig.class)
+@EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
+public class FastClientImporter {
+}
+```
+
+
 
 ```java
 @RestController
@@ -1326,6 +1352,8 @@ public class FdsUploadController {
 
 
 
+
+
 ## Ribbon
 
 > **客户端负载均衡器**
@@ -1366,3 +1394,6 @@ public class FdsUploadController {
 
 # 课程预览
 
+
+
+方案： 将课程预览的html静态化到nginx服务器下。

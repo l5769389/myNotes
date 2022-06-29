@@ -910,3 +910,40 @@ new Vue({  router,  render: (h) => h(App),}).$mount("#app");
 
 子组件中对于event的监听触发父组件中的model变化。
 
+
+
+
+
+
+
+
+
+# vue3
+
+
+
+## setup中 父组件调用子组件
+
+<img src="https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220624094858462.png" alt="image-20220624094858462" style="zoom:67%;" />
+
+
+
+
+
+#  vite
+
+## vite vue3中使用require 
+
+```js
+const getUrl =name=>{
+  return new URL(`../../assets/${name}`,import.meta.url).href;
+}
+{
+  src:getUrl('video.mp4')
+}
+```
+
+
+
+
+
