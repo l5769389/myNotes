@@ -287,6 +287,7 @@ bean标签的scope属性：
      * 属性：value，指定取值。
 
 4. **生命周期相关：<bean>中`init-method` 和`destory-method`一样。**
+   
    * @preDestory
    * @postDestory
 
@@ -294,5 +295,52 @@ bean标签的scope属性：
 
 
 
+### 几种注入形式
+
+1. 构造器注入:
+
+   ```java
+       private final InventoryMapper inventoryMapper;
+    
+       public InventoryController(InventoryMapper inventoryMapper) {
+           this.inventoryMapper = inventoryMapper;
+       }
+   ```
+
+   **强制性依赖**
+
+2. setter注入
+
+   ```java
+       private InventoryMapper inventoryMapper;
+    
+       public void setInventoryMapper(InventoryMapper inventoryMapper) {
+           this.inventoryMapper = inventoryMapper;
+       }
+   ```
+
+   这是一种  ***非强制性依赖***
+
+3. 字段变量注入
+
+   ```java
+       @Autowired
+       private InventoryMapper inventoryMapper;
+   ```
+
+缺点： 不能指明依赖，如果没有启动整个容器，就不弄跑起来。
+
+
+
+
+
+
+
+
+
 ## IOC 案例 ： 单元测试
+
+
+
+
 

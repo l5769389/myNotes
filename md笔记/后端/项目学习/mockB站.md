@@ -1,5 +1,115 @@
 # 获取前端请求
 
+
+
+## get 请求
+
+![image-20220630104604513](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630104604513.png)
+
+
+
+
+
+
+
+
+
+## post请求
+
+1. form-data
+
+既可以上传键值对，也可以一并上传文件。且可以同时上传多个文件。前端：FormData.append;
+
+![image-20220630103352309](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630103352309.png)
+
+
+
+
+
+
+
+2. x-www-form-urlencoded
+
+就是 **application/x-www-from-urlencoded**, 会将表单内的数据转换为键值对
+
+
+
+<img src="https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630103526907.png" alt="image-20220630103526907" style="zoom: 67%;" />
+
+
+
+
+
+
+
+3. 设置为json
+
+<img src="https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630104212472.png" alt="image-20220630104212472" style="zoom:67%;" />
+
+
+
+
+
+
+
+
+
+## springboot 获取参数
+
+### 获取get参数
+
+![image-20220630105646411](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630105646411.png)
+
+
+
+### 获取 form-data 和 x-www-form-urlencoded参数
+
+#### 参数无文件类型
+
+如果form-data中没有文件类型，那么获取方式均为：
+
+此时参数均为基本类型。
+
+方式一：@RequestParam 
+
+<img src="https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630111016457.png" alt="image-20220630111016457" style="zoom:50%;" />
+
+
+
+方式二：采用map来获取
+
+![image-20220630111417204](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630111417204.png)
+
+
+
+方式三：采用实体类来接收：
+
+![image-20220630165806125](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630165806125.png)
+
+
+
+#### 参数有文件类型：
+
+![image-20220630111823030](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630111823030.png)
+
+
+
+
+
+### 获取JSON参数
+
+除了上面的采用实体类的方式，还是可以采用alibaba的JSONObject来获取
+
+![image-20220630170434295](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220630170434295.png)
+
+
+
+
+
+
+
+# 注解说明
+
 * `@RestController`
 
   是以下两者的结合：
@@ -9,11 +119,7 @@
 
 
 
-* @RequestMapping
 
-
-
-* GetMapping
 
 
 
@@ -87,6 +193,36 @@ public class TeachplanNode extends Teachplan {
              c.orderby
 </select>
 ```
+
+
+
+
+
+将一个数组中的东西展开后插入数据库中:
+
+```java
+    public void batchAddVideoTags(List<VideoTag> list);
+```
+
+```xml
+    <insert id="batchAddVideoTags" parameterType="java.util.List">
+        insert into
+            t_video_tag(
+                        videoID,
+                        tagID,
+                        createTime
+        )values
+             <foreach collection="list" item="tagItem" separator=",">
+                    (
+                     #{tagItem.videoID},
+                     #{tagItem.tagID},
+                     #{tagItem.createTime}
+                 )
+             </foreach>
+    </insert>
+```
+
+
 
 
 

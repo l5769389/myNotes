@@ -146,6 +146,25 @@ nginx在etc目录下：
 
 ![image-20220320114659694](https://notes-imgs.oss-cn-shanghai.aliyuncs.com/note-imgs/image-20220320114659694.png)
 
+
+
+
+
+
+
+### redis
+
+登录容器后：
+
+```shell
+redis-cli -p 6379
+// 查看所有keys
+keys *
+
+```
+
+
+
 ## 迁移与备份
 
 #### 将容器保存为镜像
@@ -165,20 +184,6 @@ docker save -o mynginx.tar mynginx_image
 ```shell
 docker load -i mynginx.tar
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

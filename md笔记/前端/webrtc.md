@@ -47,7 +47,7 @@
 > 本地网页上启动本地摄像头和声音
 
 ```html
-  <video id="video" autoplay playsinline></video>
+<video id="video" autoplay playsinline></video>
 <script>
     const videoplay =document.querySelector('#video');
     navigator.mediaDevices.getUserMedia({video:true,audio:true})

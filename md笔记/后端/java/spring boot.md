@@ -88,14 +88,3 @@ public class controller {
 
 
 
-# springboot 集成
-
-## 集成mybatis
-
-https://blog.csdn.net/iku5200/article/details/82856621/
-
-## 集成Junit
-
-## 集成SpringData JPA
-
-## 集成Redis
